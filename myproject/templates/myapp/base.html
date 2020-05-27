@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style media="screen">
+      body{
+background-color: #A4DE02;
+      }
+      .container{
+        background-color:cyan ;
+      }
+      .navbar navbar-expand-lg navbar-light bg-light{
+        background-color: #A4DE02;
+      }
+      .form-wrap {
+             background: #fff;
+             padding: 15px 25px;
+             color: #333;
+           }
+
+           .form-wrap h1,
+           .form-wrap p {
+             text-align: center;
+           }
+
+           .form-wrap .form-group {
+             margin-top: 15px;
+           }
+
+           .form-wrap .form-group label {
+             display: block;
+             color: #666;
+           }
+
+           .form-wrap .form-group input {
+             width: 100%;
+             padding: 10px;
+             border: #ddd 1px solid;
+             border-radius: 5px;
+           }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <div class="navbar-nav">
+                  {# Django Home Link / Admin Link / Register Link#}
+                  <a class="navbar-brand" href="{% url 'index' %}">DJANGO</a>
+                  <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
+                  <a class="nav-item nav-link" href="{% url 'myapp:register' %}">Register</a>
+                  {# Some logic on what to display for last item#}
+                    {% if user.is_authenticated %}
+                      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'myapp:user_login' %}">Login</a>
+                    {% endif %}
+
+                  </div>
+
+            </nav>
+        </div>
+
+    <div class="container">
+    {% block body_block %}
+    {% endblock %}
+    </div>
+
+
+  </body>
+</html>
